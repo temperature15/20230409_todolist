@@ -94,10 +94,9 @@
         let btnAdd = document.getElementById("btnAdd");
         let btnDelete = document.getElementById("btnDelete");
         let ul = document.getElementById("ul");
-        // let index = 1;
 
         btnAdd.addEventListener("click", addList);
-        btnDelete.addEventListener("click", deleteList());
+        btnDelete.addEventListener("click", deleteList);
 
         function addList() {
             let todoList = document.getElementById("input").value;
@@ -105,7 +104,6 @@
 
             let li = document.createElement("li");
             li.setAttribute("class", "li");
-            // li.setAttribute("data-index", index++);
 
             let label = document.createElement("label");
             label.setAttribute("class", "label");
@@ -126,8 +124,9 @@
         };
         
         function deleteList() {
-            let li = document.getElementsByClassName("li");
-            console.log(li)
+            let li = document.querySelector(".li");
+            console.log(li);
+            li.remove(this);
         };
     </script>
 </body>
