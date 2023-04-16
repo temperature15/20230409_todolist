@@ -18,7 +18,7 @@
             overflow: auto;
         }
 
-        .input {
+        input {
             font-size: 20px
         }
 
@@ -29,7 +29,7 @@
             color: blue;
         }
         
-        .li {
+        li {
             text-align: start;
             border: 1px solid lightgray;
             font-size: 20px;
@@ -47,7 +47,7 @@
             font-size: 15px;
         }
 
-        .label {
+        label {
             width: 100%;
         }
     </style>
@@ -58,13 +58,12 @@
         <div class="box text-auto">
             <div class="input">
                 <h3>待辦事項
-                    <input type="text" id="input" class="input" size="60px" value="聊天">
+                    <input type="text" id="input" size="60px" value="聊天">
                     <button id="btnAdd">新增事項</button>
                 </h3>
             </div>
-
             <div class="list">
-                <ul id="ul" class="ul">
+                <ul id="ul" class="">
                 </ul>
             </div>
         </div>
@@ -73,21 +72,17 @@
     <script>
         let btnAdd = document.getElementById("btnAdd");
         let ul = document.getElementById("ul");
-
         btnAdd.addEventListener("click", addList);
-
         function addList() {
             let todoList = document.getElementById("input").value;
             let time = new Date();
-
-            let li = `<li class="li">
+            let li = `<li>
                         <div>
-                            <label class="label" for="">${todoList}</label>
+                            <label for="">${todoList}</label>
                         </div>
                         <button id="btnDelete" onclick="parentElement.remove()">刪除</button>
                         <p class="time">創建時間: ${time}</p>
                     </li>`;
-
             ul.innerHTML += li;
             document.getElementById("input").value = "";
         };
