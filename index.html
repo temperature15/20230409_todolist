@@ -65,39 +65,6 @@
 
             <div class="list">
                 <ul id="ul" class="ul">
-                    <li class="li">
-                        <div>
-                            <label class="label" for="">aaaa</label>
-                        </div>
-                        <button id="btnDelete">刪除</button>
-                        <p class="time">創建時間: Thu Apr 13 2023 00:22:29 GMT+0800 (台北標準時間)</p>
-                    </li>
-
-                    <li class="li">
-                        <div>
-                            <div>
-                                <label class="label" for="">bbbb</label>
-                            </div>
-                        </div>
-                        <button id="btnDelete">刪除</button>
-                        <p class="time">創建時間: Thu Apr 13 2023 00:22:29 GMT+0800 (台北標準時間)</p>
-                    </li>
-                    
-                    <li class="li">
-                        <div>
-                            <label class="label" for="">cccc</label>
-                        </div>
-                        <button id="btnDelete">刪除</button>
-                        <p class="time">創建時間: Thu Apr 13 2023 00:22:29 GMT+0800 (台北標準時間)</p>
-                    </li>
-
-                    <li class="li">
-                        <div>
-                            <label class="label" for="">dddd</label>
-                        </div>
-                        <button id="btnDelete">刪除</button>
-                        <p class="time">創建時間: Thu Apr 13 2023 00:22:29 GMT+0800 (台北標準時間)</p>
-                    </li>
                 </ul>
             </div>
         </div>
@@ -108,44 +75,21 @@
         let ul = document.getElementById("ul");
 
         btnAdd.addEventListener("click", addList);
-        ul.addEventListener("click", deleteList);
 
         function addList() {
             let todoList = document.getElementById("input").value;
             let time = new Date();
 
-            let li = document.createElement("li");
-            li.setAttribute("class", "li");
+            let li = `<li class="li">
+                        <div>
+                            <label class="label" for="">${todoList}</label>
+                        </div>
+                        <button id="btnDelete" onclick="parentElement.remove()">刪除</button>
+                        <p class="time">創建時間: ${time}</p>
+                    </li>`;
 
-            let div = document.createElement("div");
-            
-            let label = document.createElement("label");
-            label.setAttribute("class", "label");
-            label.innerText = todoList;
-
-            let btn = document.createElement("button");
-            btn.setAttribute("id", "btnDelete");
-            btn.innerText = "刪除";
-
-            let p = document.createElement("p");
-            p.setAttribute("class", "time");
-            p.innerText = time;
-
-            // btn.addEventListener("click", () => {
-            //     li.remove();
-            // })
-
-            ul.append(li);
-            li.append(div);
-            div.append(label);
-            div.after(btn);
-            btn.after(p);
-
+            ul.innerHTML += li;
             document.getElementById("input").value = "";
-        };
-        
-        function deleteList(e) {
-            ul.removeChild(e.target.parentElement);
         };
     </script>
 </body>
