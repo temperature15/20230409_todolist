@@ -56,14 +56,14 @@
     <div class="container">
         <h1>Todo List</h1>
         <div class="box text-auto">
-            <div class="input">
+            <div>
                 <h3>待辦事項
                     <input type="text" id="input" size="60px" value="聊天">
                     <button id="btnAdd">新增事項</button>
                 </h3>
             </div>
-            <div class="list">
-                <ul id="ul" class="">
+            <div>
+                <ul id="ul">
                 </ul>
             </div>
         </div>
@@ -72,18 +72,33 @@
     <script>
         let btnAdd = document.getElementById("btnAdd");
         let ul = document.getElementById("ul");
+
         btnAdd.addEventListener("click", addList);
+
         function addList() {
             let todoList = document.getElementById("input").value;
             let time = new Date();
-            let li = `<li>
-                        <div>
-                            <label for="">${todoList}</label>
-                        </div>
-                        <button id="btnDelete" onclick="parentElement.remove()">刪除</button>
-                        <p class="time">創建時間: ${time}</p>
-                    </li>`;
-            ul.innerHTML += li;
+            let li = document.createElement("li");
+            let div = document.createElement("div");
+            let label = document.createElement("label");
+            let btn = document.createElement("button");
+            let p = document.createElement("p");
+            btn.setAttribute("id", "btnDelete");
+            p.setAttribute("class", "time");
+            label.innerText = todoList;
+            btn.innerText = "刪除";
+            p.innerText = time;
+
+            btn.addEventListener("click", () => {
+                li.remove();
+            })
+
+            ul.append(li);
+            li.append(div);
+            div.append(label);
+            div.after(btn);
+            btn.after(p);
+
             document.getElementById("input").value = "";
         };
     </script>
